@@ -1,0 +1,3346 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "locales/locales.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "sourceLocale",
+          "default": "`en`",
+          "description": "The locale code that templates in this source code are written in."
+        },
+        {
+          "kind": "variable",
+          "name": "targetLocales",
+          "type": {
+            "text": "array"
+          },
+          "default": "[\n  ,\n]",
+          "description": "The other locale codes that this application is localized into. Sorted\nlexicographically."
+        },
+        {
+          "kind": "variable",
+          "name": "allLocales",
+          "type": {
+            "text": "array"
+          },
+          "default": "[\n  `en`,\n]",
+          "description": "All valid project locale codes. Sorted lexicographically."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "sourceLocale",
+          "declaration": {
+            "name": "sourceLocale",
+            "module": "locales/locales.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "targetLocales",
+          "declaration": {
+            "name": "targetLocales",
+            "module": "locales/locales.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "allLocales",
+          "declaration": {
+            "name": "allLocales",
+            "module": "locales/locales.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/context.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "postsStoreContext"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "postsStoreContext",
+          "declaration": {
+            "name": "postsStoreContext",
+            "module": "src/context.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/index.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "./posts-store.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "./posts-client.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "./context.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "./types.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/mocks.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "PostsZomeMock",
+          "members": [
+            {
+              "kind": "field",
+              "name": "posts",
+              "default": "new HoloHashMap<ActionHash, {\n    deletes: Array<SignedActionHashed<Delete>>;\n    revisions: Array<Record>;\n  }>()",
+              "description": "Post"
+            },
+            {
+              "kind": "method",
+              "name": "create_post",
+              "return": {
+                "type": {
+                  "text": "Promise<Record>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "post",
+                  "type": {
+                    "text": "Post"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "get_latest_post",
+              "return": {
+                "type": {
+                  "text": "Promise<Record | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "postHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "get_all_revisions_for_post",
+              "return": {
+                "type": {
+                  "text": "Promise<Record[] | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "postHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "get_original_post",
+              "return": {
+                "type": {
+                  "text": "Promise<Record | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "postHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "get_all_deletes_for_post",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<SignedActionHashed<Delete>> | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "postHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "get_oldest_delete_for_post",
+              "return": {
+                "type": {
+                  "text": "Promise<SignedActionHashed<Delete> | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "postHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "delete_post",
+              "return": {
+                "type": {
+                  "text": "Promise<ActionHash>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "original_post_hash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "update_post",
+              "return": {
+                "type": {
+                  "text": "Promise<Record>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "input",
+                  "type": {
+                    "text": "{ original_post_hash: ActionHash; previous_post_hash: ActionHash; updated_post: Post; }"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "comments",
+              "default": "new HoloHashMap<ActionHash, {\n    deletes: Array<SignedActionHashed<Delete>>;\n    revisions: Array<Record>;\n  }>()",
+              "description": "Comment"
+            },
+            {
+              "kind": "field",
+              "name": "commentsForPost",
+              "default": "new HoloHashMap<ActionHash, Link[]>()"
+            },
+            {
+              "kind": "method",
+              "name": "create_comment",
+              "return": {
+                "type": {
+                  "text": "Promise<Record>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "comment",
+                  "type": {
+                    "text": "Comment"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "get_latest_comment",
+              "return": {
+                "type": {
+                  "text": "Promise<Record | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "commentHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "get_all_revisions_for_comment",
+              "return": {
+                "type": {
+                  "text": "Promise<Record[] | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "commentHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "get_original_comment",
+              "return": {
+                "type": {
+                  "text": "Promise<Record | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "commentHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "get_all_deletes_for_comment",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<SignedActionHashed<Delete>> | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "commentHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "get_oldest_delete_for_comment",
+              "return": {
+                "type": {
+                  "text": "Promise<SignedActionHashed<Delete> | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "commentHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "delete_comment",
+              "return": {
+                "type": {
+                  "text": "Promise<ActionHash>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "original_comment_hash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "update_comment",
+              "return": {
+                "type": {
+                  "text": "Promise<Record>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "input",
+                  "type": {
+                    "text": "{ previous_comment_hash: ActionHash; updated_comment: Comment; }"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "get_comments_for_post",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<Link>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "postHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "likes",
+              "default": "new HoloHashMap<ActionHash, {\n    deletes: Array<SignedActionHashed<Delete>>;\n    revisions: Array<Record>;\n  }>()",
+              "description": "Like"
+            },
+            {
+              "kind": "field",
+              "name": "likesForLike",
+              "default": "new HoloHashMap<ActionHash, Link[]>()"
+            },
+            {
+              "kind": "method",
+              "name": "create_like",
+              "return": {
+                "type": {
+                  "text": "Promise<Record>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "like",
+                  "type": {
+                    "text": "Like"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "get_like",
+              "return": {
+                "type": {
+                  "text": "Promise<Record | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "likeHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "get_all_deletes_for_like",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<SignedActionHashed<Delete>> | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "likeHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "get_oldest_delete_for_like",
+              "return": {
+                "type": {
+                  "text": "Promise<SignedActionHashed<Delete> | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "likeHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "delete_like",
+              "return": {
+                "type": {
+                  "text": "Promise<ActionHash>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "original_like_hash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "get_likes_for_like",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<Link>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "likeHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "certificates",
+              "default": "new HoloHashMap<ActionHash, {\n    deletes: Array<SignedActionHashed<Delete>>;\n    revisions: Array<Record>;\n  }>()",
+              "description": "Certificate"
+            },
+            {
+              "kind": "field",
+              "name": "certificatesForPost",
+              "default": "new HoloHashMap<ActionHash, Link[]>()"
+            },
+            {
+              "kind": "field",
+              "name": "certificatesForCertified",
+              "default": "new HoloHashMap<ActionHash, Link[]>()"
+            },
+            {
+              "kind": "field",
+              "name": "certificatesForCertificate",
+              "default": "new HoloHashMap<ActionHash, Link[]>()"
+            },
+            {
+              "kind": "method",
+              "name": "create_certificate",
+              "return": {
+                "type": {
+                  "text": "Promise<Record>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "certificate",
+                  "type": {
+                    "text": "Certificate"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "get_certificate",
+              "return": {
+                "type": {
+                  "text": "Promise<Record | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "certificateHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "get_certificates_for_post",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<Link>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "postHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "get_certificates_for_certified",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<Link>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "certified",
+                  "type": {
+                    "text": "AgentPubKey"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "get_certificates_for_certificate",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<Link>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "certificateHash",
+                  "type": {
+                    "text": "EntryHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "get_all_posts",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<Link>>"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "get_posts_by_author",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<Link>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "author",
+                  "type": {
+                    "text": "AgentPubKey"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "get_all_posts_entry_hash",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<Link>>"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "get_posts_by_author_entry_hash",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<Link>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "author",
+                  "type": {
+                    "text": "AgentPubKey"
+                  }
+                }
+              ]
+            }
+          ],
+          "superclass": {
+            "name": "ZomeMock",
+            "package": "@holochain-open-dev/utils"
+          }
+        },
+        {
+          "kind": "function",
+          "name": "samplePost",
+          "return": {
+            "type": {
+              "text": "Promise<Post>"
+            }
+          },
+          "parameters": [
+            {
+              "name": "client",
+              "type": {
+                "text": "PostsClient"
+              }
+            },
+            {
+              "name": "partialPost",
+              "default": "{}",
+              "type": {
+                "text": "Partial<Post>"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "sampleComment",
+          "return": {
+            "type": {
+              "text": "Promise<Comment>"
+            }
+          },
+          "parameters": [
+            {
+              "name": "client",
+              "type": {
+                "text": "PostsClient"
+              }
+            },
+            {
+              "name": "partialComment",
+              "default": "{}",
+              "type": {
+                "text": "Partial<Comment>"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "sampleLike",
+          "return": {
+            "type": {
+              "text": "Promise<Like>"
+            }
+          },
+          "parameters": [
+            {
+              "name": "client",
+              "type": {
+                "text": "PostsClient"
+              }
+            },
+            {
+              "name": "partialLike",
+              "default": "{}",
+              "type": {
+                "text": "Partial<Like>"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "sampleCertificate",
+          "return": {
+            "type": {
+              "text": "Promise<Certificate>"
+            }
+          },
+          "parameters": [
+            {
+              "name": "client",
+              "type": {
+                "text": "PostsClient"
+              }
+            },
+            {
+              "name": "partialCertificate",
+              "default": "{}",
+              "type": {
+                "text": "Partial<Certificate>"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PostsZomeMock",
+          "declaration": {
+            "name": "PostsZomeMock",
+            "module": "src/mocks.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "samplePost",
+          "declaration": {
+            "name": "samplePost",
+            "module": "src/mocks.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "sampleComment",
+          "declaration": {
+            "name": "sampleComment",
+            "module": "src/mocks.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "sampleLike",
+          "declaration": {
+            "name": "sampleLike",
+            "module": "src/mocks.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "sampleCertificate",
+          "declaration": {
+            "name": "sampleCertificate",
+            "module": "src/mocks.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/posts-client.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "PostsClient",
+          "members": [
+            {
+              "kind": "method",
+              "name": "createPost",
+              "return": {
+                "type": {
+                  "text": "Promise<EntryRecord<Post>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "post",
+                  "type": {
+                    "text": "Post"
+                  }
+                }
+              ],
+              "description": "Post"
+            },
+            {
+              "kind": "method",
+              "name": "getLatestPost",
+              "return": {
+                "type": {
+                  "text": "Promise<EntryRecord<Post> | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "postHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getOriginalPost",
+              "return": {
+                "type": {
+                  "text": "Promise<EntryRecord<Post> | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "postHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getAllRevisionsForPost",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<EntryRecord<Post>>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "postHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "updatePost",
+              "return": {
+                "type": {
+                  "text": "Promise<EntryRecord<Post>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "originalPostHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                },
+                {
+                  "name": "previousPostHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                },
+                {
+                  "name": "updatedPost",
+                  "type": {
+                    "text": "Post"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "deletePost",
+              "return": {
+                "type": {
+                  "text": "Promise<ActionHash>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "originalPostHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getAllDeletesForPost",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<SignedActionHashed<Delete>>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "originalPostHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getOldestDeleteForPost",
+              "return": {
+                "type": {
+                  "text": "Promise<SignedActionHashed<Delete> | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "originalPostHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "createComment",
+              "return": {
+                "type": {
+                  "text": "Promise<EntryRecord<Comment>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "comment",
+                  "type": {
+                    "text": "Comment"
+                  }
+                }
+              ],
+              "description": "Comment"
+            },
+            {
+              "kind": "method",
+              "name": "getLatestComment",
+              "return": {
+                "type": {
+                  "text": "Promise<EntryRecord<Comment> | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "commentHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getOriginalComment",
+              "return": {
+                "type": {
+                  "text": "Promise<EntryRecord<Comment> | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "commentHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getAllRevisionsForComment",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<EntryRecord<Comment>>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "commentHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "updateComment",
+              "return": {
+                "type": {
+                  "text": "Promise<EntryRecord<Comment>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "previousCommentHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                },
+                {
+                  "name": "updatedComment",
+                  "type": {
+                    "text": "Comment"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "deleteComment",
+              "return": {
+                "type": {
+                  "text": "Promise<ActionHash>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "originalCommentHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getAllDeletesForComment",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<SignedActionHashed<Delete>>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "originalCommentHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getOldestDeleteForComment",
+              "return": {
+                "type": {
+                  "text": "Promise<SignedActionHashed<Delete> | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "originalCommentHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getCommentsForPost",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<Link>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "postHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getDeletedCommentsForPost",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<[SignedActionHashed<CreateLink>, SignedActionHashed<DeleteLink>[]]>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "postHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "createLike",
+              "return": {
+                "type": {
+                  "text": "Promise<EntryRecord<Like>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "like",
+                  "type": {
+                    "text": "Like"
+                  }
+                }
+              ],
+              "description": "Like"
+            },
+            {
+              "kind": "method",
+              "name": "getLike",
+              "return": {
+                "type": {
+                  "text": "Promise<EntryRecord<Like> | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "likeHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "deleteLike",
+              "return": {
+                "type": {
+                  "text": "Promise<ActionHash>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "originalLikeHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getAllDeletesForLike",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<SignedActionHashed<Delete>>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "originalLikeHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getOldestDeleteForLike",
+              "return": {
+                "type": {
+                  "text": "Promise<SignedActionHashed<Delete> | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "originalLikeHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getLikesForLike",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<Link>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "likeHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getDeletedLikesForLike",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<[SignedActionHashed<CreateLink>, SignedActionHashed<DeleteLink>[]]>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "likeHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "createCertificate",
+              "return": {
+                "type": {
+                  "text": "Promise<EntryRecord<Certificate>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "certificate",
+                  "type": {
+                    "text": "Certificate"
+                  }
+                }
+              ],
+              "description": "Certificate"
+            },
+            {
+              "kind": "method",
+              "name": "getCertificate",
+              "return": {
+                "type": {
+                  "text": "Promise<EntryRecord<Certificate> | undefined>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "certificateHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getCertificatesForPost",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<Link>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "postHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getCertificatesForCertified",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<Link>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "certified",
+                  "type": {
+                    "text": "AgentPubKey"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getCertificatesForCertificate",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<Link>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "certificateHash",
+                  "type": {
+                    "text": "EntryHash"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getAllPosts",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<Link>>"
+                }
+              },
+              "description": "All Posts"
+            },
+            {
+              "kind": "method",
+              "name": "getPostsByAuthor",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<Link>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "author",
+                  "type": {
+                    "text": "AgentPubKey"
+                  }
+                }
+              ],
+              "description": "Posts By Author"
+            },
+            {
+              "kind": "method",
+              "name": "getAllPostsEntryHash",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<Link>>"
+                }
+              },
+              "description": "All Posts Entry Hash"
+            },
+            {
+              "kind": "method",
+              "name": "getPostsByAuthorEntryHash",
+              "return": {
+                "type": {
+                  "text": "Promise<Array<Link>>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "author",
+                  "type": {
+                    "text": "AgentPubKey"
+                  }
+                }
+              ],
+              "description": "Posts By Author Entry Hash"
+            }
+          ],
+          "superclass": {
+            "name": "ZomeClient",
+            "package": "@holochain-open-dev/utils"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PostsClient",
+          "declaration": {
+            "name": "PostsClient",
+            "module": "src/posts-client.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/posts-store.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "PostsStore",
+          "members": [
+            {
+              "kind": "field",
+              "name": "posts",
+              "default": "new LazyHoloHashMap((postHash: ActionHash) => ({\n    latestVersion: latestVersionOfEntryStore(this.client, () => this.client.getLatestPost(postHash)),\n      original: immutableEntryStore(() => this.client.getOriginalPost(postHash)),\n      allRevisions: allRevisionsOfEntryStore(this.client, () => this.client.getAllRevisionsForPost(postHash)),\n      deletes: deletesForEntryStore(this.client, postHash, () => this.client.getAllDeletesForPost(postHash)),\n    comments: {\n      live: pipe(\n        liveLinksStore(\n          this.client,\n          postHash,\n          () => this.client.getCommentsForPost(postHash),\n          'PostToComments'\n        ), \n        links => slice(this.comments, links.map(l => l.target))\n      ),\n      deleted: pipe(\n        deletedLinksStore(\n          this.client,\n          postHash,\n          () => this.client.getDeletedCommentsForPost(postHash),\n          'PostToComments'\n        ), links => slice(this.comments, links.map(l => l[0].hashed.content.target_address))\n      ),\n    },\n    certificates: pipe(\n        liveLinksStore(\n          this.client,\n          postHash,\n          () => this.client.getCertificatesForPost(postHash),\n          'PostToCertificates'\n        ), links => slice(this.certificates, links.map(l => l.target))\n      ),\n    })\n  )",
+              "description": "Post"
+            },
+            {
+              "kind": "field",
+              "name": "comments",
+              "default": "new LazyHoloHashMap((commentHash: ActionHash) => ({\n      latestVersion: latestVersionOfEntryStore(this.client, () => this.client.getLatestComment(commentHash)),\n      original: immutableEntryStore(() => this.client.getOriginalComment(commentHash)),\n      allRevisions: allRevisionsOfEntryStore(this.client, () => this.client.getAllRevisionsForComment(commentHash)),\n      deletes: deletesForEntryStore(this.client, commentHash, () => this.client.getAllDeletesForComment(commentHash)),\n    })\n  )",
+              "description": "Comment"
+            },
+            {
+              "kind": "field",
+              "name": "likes",
+              "default": "new LazyHoloHashMap((likeHash: ActionHash) => ({\n      entry: immutableEntryStore(() => this.client.getLike(likeHash)),\n      deletes: deletesForEntryStore(this.client, likeHash, () => this.client.getAllDeletesForLike(likeHash)),\n      likes: {\n          live: pipe(\n            liveLinksStore(\n              this.client,\n              likeHash,\n              () => this.client.getLikesForLike(likeHash),\n              'LikeToLikes'\n            ), links => links.map(l => l.target)\n          ),\n          deleted: pipe(\n            deletedLinksStore(\n              this.client,\n              likeHash,\n              () => this.client.getDeletedLikesForLike(likeHash),\n              'LikeToLikes'\n            ), links=> links.map(l => l[0].hashed.content.target_address)\n          ),\n      },\n    })\n  )",
+              "description": "Like"
+            },
+            {
+              "kind": "field",
+              "name": "certificates",
+              "default": "new LazyHoloHashMap((certificateHash: ActionHash) => ({\n      entry: immutableEntryStore(() => this.client.getCertificate(certificateHash)),\n      certificates: pipe(\n          liveLinksStore(\n            this.client,\n            certificateHash,\n            () => this.client.getCertificatesForCertificate(certificateHash),\n            'CertificateToCertificates'\n          ), \n          links => links.map(l => l.target)\n        ),\n    })\n  )",
+              "description": "Certificate"
+            },
+            {
+              "kind": "field",
+              "name": "certificatesForCertified",
+              "default": "new LazyHoloHashMap((certified: AgentPubKey) => pipe(\n      liveLinksStore(\n        this.client,\n        certified,\n        () => this.client.getCertificatesForCertified(certified),\n        'CertifiedToCertificates'\n      ), links => slice(this.certificates, links.map(l => l.target))\n    ),\n  )"
+            },
+            {
+              "kind": "field",
+              "name": "allPosts",
+              "description": "All Posts"
+            },
+            {
+              "kind": "field",
+              "name": "postsByAuthor",
+              "default": "new LazyHoloHashMap((author: AgentPubKey) => \n    pipe(\n      collectionStore(\n        this.client, \n        () => this.client.getPostsByAuthor(author),\n        'PostsByAuthor'\n      ),\n      postsByAuthor => slice(this.posts, postsByAuthor.map(l => l.target))\n    )\n  )",
+              "description": "Posts By Author"
+            },
+            {
+              "kind": "field",
+              "name": "allPostsEntryHash",
+              "description": "All Posts Entry Hash"
+            },
+            {
+              "kind": "field",
+              "name": "postsByAuthorEntryHash",
+              "default": "new LazyHoloHashMap((author: AgentPubKey) => \n    pipe(\n      collectionStore(\n        this.client, \n        () => this.client.getPostsByAuthorEntryHash(author),\n        'PostsByAuthorEntryHash'\n      ),\n      postsByAuthorEntryHash => slice(this.posts, postsByAuthorEntryHash.map(l => l.target))\n    )\n  )",
+              "description": "Posts By Author Entry Hash"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PostsStore",
+          "declaration": {
+            "name": "PostsStore",
+            "module": "src/posts-store.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/types.ts",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/all-posts-entry-hash.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "AllPostsEntryHash",
+          "members": [
+            {
+              "kind": "method",
+              "name": "renderList",
+              "parameters": [
+                {
+                  "name": "hashes",
+                  "type": {
+                    "text": "Array<EntryHash>"
+                  }
+                }
+              ]
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "all-posts-entry-hash",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "AllPostsEntryHash",
+          "declaration": {
+            "name": "AllPostsEntryHash",
+            "module": "src/elements/all-posts-entry-hash.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "all-posts-entry-hash",
+          "declaration": {
+            "name": "AllPostsEntryHash",
+            "module": "src/elements/all-posts-entry-hash.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/all-posts.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "AllPosts",
+          "members": [
+            {
+              "kind": "method",
+              "name": "renderList",
+              "parameters": [
+                {
+                  "name": "hashes",
+                  "type": {
+                    "text": "Array<ActionHash>"
+                  }
+                }
+              ]
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "all-posts",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "AllPosts",
+          "declaration": {
+            "name": "AllPosts",
+            "module": "src/elements/all-posts.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "all-posts",
+          "declaration": {
+            "name": "AllPosts",
+            "module": "src/elements/all-posts.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/certificate-detail.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CertificateDetail",
+          "members": [
+            {
+              "kind": "field",
+              "name": "certificateHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "attribute": "certificateHash"
+            },
+            {
+              "kind": "method",
+              "name": "renderDetail",
+              "parameters": [
+                {
+                  "name": "entryRecord",
+                  "type": {
+                    "text": "EntryRecord<Certificate>"
+                  }
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "description": "detail will contain { certificateHash }",
+              "name": "certificate-deleted:"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "certificateHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "fieldName": "certificateHash"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "certificate-detail",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CertificateDetail",
+          "declaration": {
+            "name": "CertificateDetail",
+            "module": "src/elements/certificate-detail.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "certificate-detail",
+          "declaration": {
+            "name": "CertificateDetail",
+            "module": "src/elements/certificate-detail.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/certificate-summary.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CertificateSummary",
+          "members": [
+            {
+              "kind": "field",
+              "name": "certificateHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "attribute": "certificateHash"
+            },
+            {
+              "kind": "method",
+              "name": "renderSummary",
+              "parameters": [
+                {
+                  "name": "entryRecord",
+                  "type": {
+                    "text": "EntryRecord<Certificate>"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "renderCertificate"
+            }
+          ],
+          "events": [
+            {
+              "name": "certificate-selected",
+              "type": {
+                "text": "CustomEvent"
+              }
+            },
+            {
+              "description": "detail will contain { certificateHash }",
+              "name": "certificate-selected:"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "certificateHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "fieldName": "certificateHash"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "certificate-summary",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CertificateSummary",
+          "declaration": {
+            "name": "CertificateSummary",
+            "module": "src/elements/certificate-summary.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "certificate-summary",
+          "declaration": {
+            "name": "CertificateSummary",
+            "module": "src/elements/certificate-summary.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/certificates-for-certificate.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CertificatesForCertificate",
+          "members": [
+            {
+              "kind": "field",
+              "name": "certificateHash",
+              "type": {
+                "text": "EntryHash"
+              },
+              "attribute": "certificateHash"
+            },
+            {
+              "kind": "method",
+              "name": "renderList",
+              "parameters": [
+                {
+                  "name": "hashes",
+                  "type": {
+                    "text": "Array<ActionHash>"
+                  }
+                }
+              ]
+            }
+          ],
+          "attributes": [
+            {
+              "name": "certificateHash",
+              "type": {
+                "text": "EntryHash"
+              },
+              "fieldName": "certificateHash"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "certificates-for-certificate",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CertificatesForCertificate",
+          "declaration": {
+            "name": "CertificatesForCertificate",
+            "module": "src/elements/certificates-for-certificate.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "certificates-for-certificate",
+          "declaration": {
+            "name": "CertificatesForCertificate",
+            "module": "src/elements/certificates-for-certificate.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/certificates-for-certified.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CertificatesForCertified",
+          "members": [
+            {
+              "kind": "field",
+              "name": "certified",
+              "type": {
+                "text": "AgentPubKey"
+              },
+              "attribute": "certified"
+            },
+            {
+              "kind": "method",
+              "name": "renderList",
+              "parameters": [
+                {
+                  "name": "hashes",
+                  "type": {
+                    "text": "Array<ActionHash>"
+                  }
+                }
+              ]
+            }
+          ],
+          "attributes": [
+            {
+              "name": "certified",
+              "type": {
+                "text": "AgentPubKey"
+              },
+              "fieldName": "certified"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "certificates-for-certified",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CertificatesForCertified",
+          "declaration": {
+            "name": "CertificatesForCertified",
+            "module": "src/elements/certificates-for-certified.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "certificates-for-certified",
+          "declaration": {
+            "name": "CertificatesForCertified",
+            "module": "src/elements/certificates-for-certified.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/certificates-for-post.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CertificatesForPost",
+          "members": [
+            {
+              "kind": "field",
+              "name": "postHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "attribute": "postHash"
+            },
+            {
+              "kind": "method",
+              "name": "renderList",
+              "parameters": [
+                {
+                  "name": "hashes",
+                  "type": {
+                    "text": "Array<ActionHash>"
+                  }
+                }
+              ]
+            }
+          ],
+          "attributes": [
+            {
+              "name": "postHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "fieldName": "postHash"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "certificates-for-post",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CertificatesForPost",
+          "declaration": {
+            "name": "CertificatesForPost",
+            "module": "src/elements/certificates-for-post.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "certificates-for-post",
+          "declaration": {
+            "name": "CertificatesForPost",
+            "module": "src/elements/certificates-for-post.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/comment-detail.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CommentDetail",
+          "members": [
+            {
+              "kind": "field",
+              "name": "commentHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "attribute": "commentHash"
+            },
+            {
+              "kind": "method",
+              "name": "deleteComment"
+            },
+            {
+              "kind": "method",
+              "name": "renderDetail",
+              "parameters": [
+                {
+                  "name": "entryRecord",
+                  "type": {
+                    "text": "EntryRecord<Comment>"
+                  }
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "name": "comment-deleted",
+              "type": {
+                "text": "CustomEvent"
+              }
+            },
+            {
+              "description": "detail will contain { commentHash }",
+              "name": "comment-deleted:"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "commentHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "fieldName": "commentHash"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "comment-detail",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CommentDetail",
+          "declaration": {
+            "name": "CommentDetail",
+            "module": "src/elements/comment-detail.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "comment-detail",
+          "declaration": {
+            "name": "CommentDetail",
+            "module": "src/elements/comment-detail.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/comment-summary.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CommentSummary",
+          "members": [
+            {
+              "kind": "field",
+              "name": "commentHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "attribute": "commentHash"
+            },
+            {
+              "kind": "method",
+              "name": "renderSummary",
+              "parameters": [
+                {
+                  "name": "entryRecord",
+                  "type": {
+                    "text": "EntryRecord<Comment>"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "renderComment"
+            }
+          ],
+          "events": [
+            {
+              "name": "comment-selected",
+              "type": {
+                "text": "CustomEvent"
+              }
+            },
+            {
+              "description": "detail will contain { commentHash }",
+              "name": "comment-selected:"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "commentHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "fieldName": "commentHash"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "comment-summary",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CommentSummary",
+          "declaration": {
+            "name": "CommentSummary",
+            "module": "src/elements/comment-summary.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "comment-summary",
+          "declaration": {
+            "name": "CommentSummary",
+            "module": "src/elements/comment-summary.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/comments-for-post.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CommentsForPost",
+          "members": [
+            {
+              "kind": "field",
+              "name": "postHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "attribute": "postHash"
+            },
+            {
+              "kind": "method",
+              "name": "renderList",
+              "parameters": [
+                {
+                  "name": "hashes",
+                  "type": {
+                    "text": "Array<ActionHash>"
+                  }
+                }
+              ]
+            }
+          ],
+          "attributes": [
+            {
+              "name": "postHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "fieldName": "postHash"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "comments-for-post",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CommentsForPost",
+          "declaration": {
+            "name": "CommentsForPost",
+            "module": "src/elements/comments-for-post.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "comments-for-post",
+          "declaration": {
+            "name": "CommentsForPost",
+            "module": "src/elements/comments-for-post.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/create-certificate.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CreateCertificate",
+          "members": [
+            {
+              "kind": "field",
+              "name": "postHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "attribute": "postHash"
+            },
+            {
+              "kind": "field",
+              "name": "agent",
+              "type": {
+                "text": "AgentPubKey"
+              },
+              "attribute": "agent"
+            },
+            {
+              "kind": "field",
+              "name": "certificationsHashes",
+              "type": {
+                "text": "Array<EntryHash>"
+              },
+              "attribute": "certificationsHashes"
+            },
+            {
+              "kind": "field",
+              "name": "certificateType",
+              "type": {
+                "text": "CertificateType"
+              },
+              "attribute": "certificateType"
+            },
+            {
+              "kind": "field",
+              "name": "dnaHash",
+              "type": {
+                "text": "DnaHash"
+              },
+              "attribute": "dnaHash"
+            },
+            {
+              "kind": "method",
+              "name": "createCertificate",
+              "parameters": [
+                {
+                  "name": "fields",
+                  "type": {
+                    "text": "Partial<Certificate>"
+                  }
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "name": "certificate-created",
+              "type": {
+                "text": "CustomEvent"
+              }
+            },
+            {
+              "description": "detail will contain { certificateHash }",
+              "name": "certificate-created:"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "postHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "fieldName": "postHash"
+            },
+            {
+              "name": "agent",
+              "type": {
+                "text": "AgentPubKey"
+              },
+              "fieldName": "agent"
+            },
+            {
+              "name": "certificationsHashes",
+              "type": {
+                "text": "Array<EntryHash>"
+              },
+              "fieldName": "certificationsHashes"
+            },
+            {
+              "name": "certificateType",
+              "type": {
+                "text": "CertificateType"
+              },
+              "fieldName": "certificateType"
+            },
+            {
+              "name": "dnaHash",
+              "type": {
+                "text": "DnaHash"
+              },
+              "fieldName": "dnaHash"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "create-certificate",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CreateCertificate",
+          "declaration": {
+            "name": "CreateCertificate",
+            "module": "src/elements/create-certificate.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "create-certificate",
+          "declaration": {
+            "name": "CreateCertificate",
+            "module": "src/elements/create-certificate.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/create-comment.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CreateComment",
+          "members": [
+            {
+              "kind": "field",
+              "name": "postHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "attribute": "postHash"
+            },
+            {
+              "kind": "method",
+              "name": "createComment",
+              "parameters": [
+                {
+                  "name": "fields",
+                  "type": {
+                    "text": "Partial<Comment>"
+                  }
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "name": "comment-created",
+              "type": {
+                "text": "CustomEvent"
+              }
+            },
+            {
+              "description": "detail will contain { commentHash }",
+              "name": "comment-created:"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "postHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "fieldName": "postHash"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "create-comment",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CreateComment",
+          "declaration": {
+            "name": "CreateComment",
+            "module": "src/elements/create-comment.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "create-comment",
+          "declaration": {
+            "name": "CreateComment",
+            "module": "src/elements/create-comment.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/create-like.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CreateLike",
+          "members": [
+            {
+              "kind": "field",
+              "name": "likeHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "attribute": "likeHash"
+            },
+            {
+              "kind": "method",
+              "name": "createLike",
+              "parameters": [
+                {
+                  "name": "fields",
+                  "type": {
+                    "text": "Partial<Like>"
+                  }
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "name": "like-created",
+              "type": {
+                "text": "CustomEvent"
+              }
+            },
+            {
+              "description": "detail will contain { likeHash }",
+              "name": "like-created:"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "likeHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "fieldName": "likeHash"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "create-like",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CreateLike",
+          "declaration": {
+            "name": "CreateLike",
+            "module": "src/elements/create-like.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "create-like",
+          "declaration": {
+            "name": "CreateLike",
+            "module": "src/elements/create-like.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/create-post.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CreatePost",
+          "members": [
+            {
+              "kind": "method",
+              "name": "createPost",
+              "parameters": [
+                {
+                  "name": "fields",
+                  "type": {
+                    "text": "Partial<Post>"
+                  }
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "name": "post-created",
+              "type": {
+                "text": "CustomEvent"
+              }
+            },
+            {
+              "description": "detail will contain { postHash }",
+              "name": "post-created:"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "create-post",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CreatePost",
+          "declaration": {
+            "name": "CreatePost",
+            "module": "src/elements/create-post.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "create-post",
+          "declaration": {
+            "name": "CreatePost",
+            "module": "src/elements/create-post.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/edit-comment.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "EditComment",
+          "members": [
+            {
+              "kind": "field",
+              "name": "currentRecord",
+              "type": {
+                "text": "EntryRecord<Comment>"
+              },
+              "attribute": "currentRecord"
+            },
+            {
+              "kind": "method",
+              "name": "updateComment",
+              "parameters": [
+                {
+                  "name": "fields",
+                  "type": {
+                    "text": "Partial<Comment>"
+                  }
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "name": "comment-updated",
+              "type": {
+                "text": "CustomEvent"
+              }
+            },
+            {
+              "name": "edit-canceled",
+              "type": {
+                "text": "CustomEvent"
+              }
+            },
+            {
+              "description": "detail will contain { previousCommentHash, updatedCommentHash }",
+              "name": "comment-updated:"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "currentRecord",
+              "type": {
+                "text": "EntryRecord<Comment>"
+              },
+              "fieldName": "currentRecord"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "edit-comment",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "EditComment",
+          "declaration": {
+            "name": "EditComment",
+            "module": "src/elements/edit-comment.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "edit-comment",
+          "declaration": {
+            "name": "EditComment",
+            "module": "src/elements/edit-comment.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/edit-post.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "EditPost",
+          "members": [
+            {
+              "kind": "field",
+              "name": "originalPostHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "attribute": "originalPostHash"
+            },
+            {
+              "kind": "field",
+              "name": "currentRecord",
+              "type": {
+                "text": "EntryRecord<Post>"
+              },
+              "attribute": "currentRecord"
+            },
+            {
+              "kind": "method",
+              "name": "updatePost",
+              "parameters": [
+                {
+                  "name": "fields",
+                  "type": {
+                    "text": "Partial<Post>"
+                  }
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "name": "post-updated",
+              "type": {
+                "text": "CustomEvent"
+              }
+            },
+            {
+              "name": "edit-canceled",
+              "type": {
+                "text": "CustomEvent"
+              }
+            },
+            {
+              "description": "detail will contain { originalPostHash, previousPostHash, updatedPostHash }",
+              "name": "post-updated:"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "originalPostHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "fieldName": "originalPostHash"
+            },
+            {
+              "name": "currentRecord",
+              "type": {
+                "text": "EntryRecord<Post>"
+              },
+              "fieldName": "currentRecord"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "edit-post",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "EditPost",
+          "declaration": {
+            "name": "EditPost",
+            "module": "src/elements/edit-post.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "edit-post",
+          "declaration": {
+            "name": "EditPost",
+            "module": "src/elements/edit-post.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/like-detail.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LikeDetail",
+          "members": [
+            {
+              "kind": "field",
+              "name": "likeHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "attribute": "likeHash"
+            },
+            {
+              "kind": "method",
+              "name": "deleteLike"
+            },
+            {
+              "kind": "method",
+              "name": "renderDetail",
+              "parameters": [
+                {
+                  "name": "entryRecord",
+                  "type": {
+                    "text": "EntryRecord<Like>"
+                  }
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "name": "like-deleted",
+              "type": {
+                "text": "CustomEvent"
+              }
+            },
+            {
+              "description": "detail will contain { likeHash }",
+              "name": "like-deleted:"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "likeHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "fieldName": "likeHash"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "like-detail",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "LikeDetail",
+          "declaration": {
+            "name": "LikeDetail",
+            "module": "src/elements/like-detail.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "like-detail",
+          "declaration": {
+            "name": "LikeDetail",
+            "module": "src/elements/like-detail.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/like-summary.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LikeSummary",
+          "members": [
+            {
+              "kind": "field",
+              "name": "likeHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "attribute": "likeHash"
+            },
+            {
+              "kind": "method",
+              "name": "renderSummary",
+              "parameters": [
+                {
+                  "name": "entryRecord",
+                  "type": {
+                    "text": "EntryRecord<Like>"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "renderLike"
+            }
+          ],
+          "events": [
+            {
+              "name": "like-selected",
+              "type": {
+                "text": "CustomEvent"
+              }
+            },
+            {
+              "description": "detail will contain { likeHash }",
+              "name": "like-selected:"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "likeHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "fieldName": "likeHash"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "like-summary",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "LikeSummary",
+          "declaration": {
+            "name": "LikeSummary",
+            "module": "src/elements/like-summary.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "like-summary",
+          "declaration": {
+            "name": "LikeSummary",
+            "module": "src/elements/like-summary.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/likes-for-like.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LikesForLike",
+          "members": [
+            {
+              "kind": "field",
+              "name": "likeHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "attribute": "likeHash"
+            },
+            {
+              "kind": "method",
+              "name": "renderList",
+              "parameters": [
+                {
+                  "name": "hashes",
+                  "type": {
+                    "text": "Array<ActionHash>"
+                  }
+                }
+              ]
+            }
+          ],
+          "attributes": [
+            {
+              "name": "likeHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "fieldName": "likeHash"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "likes-for-like",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "LikesForLike",
+          "declaration": {
+            "name": "LikesForLike",
+            "module": "src/elements/likes-for-like.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "likes-for-like",
+          "declaration": {
+            "name": "LikesForLike",
+            "module": "src/elements/likes-for-like.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/post-detail.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "PostDetail",
+          "members": [
+            {
+              "kind": "field",
+              "name": "postHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "attribute": "postHash"
+            },
+            {
+              "kind": "method",
+              "name": "deletePost"
+            },
+            {
+              "kind": "method",
+              "name": "renderDetail",
+              "parameters": [
+                {
+                  "name": "entryRecord",
+                  "type": {
+                    "text": "EntryRecord<Post>"
+                  }
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "name": "post-deleted",
+              "type": {
+                "text": "CustomEvent"
+              }
+            },
+            {
+              "description": "detail will contain { postHash }",
+              "name": "post-deleted:"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "postHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "fieldName": "postHash"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "post-detail",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PostDetail",
+          "declaration": {
+            "name": "PostDetail",
+            "module": "src/elements/post-detail.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "post-detail",
+          "declaration": {
+            "name": "PostDetail",
+            "module": "src/elements/post-detail.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/post-summary.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "PostSummary",
+          "members": [
+            {
+              "kind": "field",
+              "name": "postHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "attribute": "postHash"
+            },
+            {
+              "kind": "method",
+              "name": "renderSummary",
+              "parameters": [
+                {
+                  "name": "entryRecord",
+                  "type": {
+                    "text": "EntryRecord<Post>"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "renderPost"
+            }
+          ],
+          "events": [
+            {
+              "name": "post-selected",
+              "type": {
+                "text": "CustomEvent"
+              }
+            },
+            {
+              "description": "detail will contain { postHash }",
+              "name": "post-selected:"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "postHash",
+              "type": {
+                "text": "ActionHash"
+              },
+              "fieldName": "postHash"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "post-summary",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PostSummary",
+          "declaration": {
+            "name": "PostSummary",
+            "module": "src/elements/post-summary.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "post-summary",
+          "declaration": {
+            "name": "PostSummary",
+            "module": "src/elements/post-summary.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/posts-by-author-entry-hash.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "PostsByAuthorEntryHash",
+          "members": [
+            {
+              "kind": "field",
+              "name": "author",
+              "type": {
+                "text": "AgentPubKey"
+              },
+              "attribute": "author"
+            },
+            {
+              "kind": "method",
+              "name": "renderList",
+              "parameters": [
+                {
+                  "name": "hashes",
+                  "type": {
+                    "text": "Array<EntryHash>"
+                  }
+                }
+              ]
+            }
+          ],
+          "attributes": [
+            {
+              "name": "author",
+              "type": {
+                "text": "AgentPubKey"
+              },
+              "fieldName": "author"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "posts-by-author-entry-hash",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PostsByAuthorEntryHash",
+          "declaration": {
+            "name": "PostsByAuthorEntryHash",
+            "module": "src/elements/posts-by-author-entry-hash.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "posts-by-author-entry-hash",
+          "declaration": {
+            "name": "PostsByAuthorEntryHash",
+            "module": "src/elements/posts-by-author-entry-hash.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/posts-by-author.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "PostsByAuthor",
+          "members": [
+            {
+              "kind": "field",
+              "name": "author",
+              "type": {
+                "text": "AgentPubKey"
+              },
+              "attribute": "author"
+            },
+            {
+              "kind": "method",
+              "name": "renderList",
+              "parameters": [
+                {
+                  "name": "hashes",
+                  "type": {
+                    "text": "Array<ActionHash>"
+                  }
+                }
+              ]
+            }
+          ],
+          "attributes": [
+            {
+              "name": "author",
+              "type": {
+                "text": "AgentPubKey"
+              },
+              "fieldName": "author"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "posts-by-author",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PostsByAuthor",
+          "declaration": {
+            "name": "PostsByAuthor",
+            "module": "src/elements/posts-by-author.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "posts-by-author",
+          "declaration": {
+            "name": "PostsByAuthor",
+            "module": "src/elements/posts-by-author.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/posts-context.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "PostsContext",
+          "members": [
+            {
+              "kind": "field",
+              "name": "store",
+              "type": {
+                "text": "PostsStore"
+              },
+              "attribute": "store"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "store",
+              "type": {
+                "text": "PostsStore"
+              },
+              "fieldName": "store"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "posts-context",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PostsContext",
+          "declaration": {
+            "name": "PostsContext",
+            "module": "src/elements/posts-context.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "posts-context",
+          "declaration": {
+            "name": "PostsContext",
+            "module": "src/elements/posts-context.ts"
+          }
+        }
+      ]
+    }
+  ]
+}

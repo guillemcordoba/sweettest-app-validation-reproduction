@@ -4804,6 +4804,7 @@ dependencies = [
  "futures",
  "hdk",
  "holochain",
+ "holochain_trace",
  "posts_integrity",
  "serde",
  "tokio",

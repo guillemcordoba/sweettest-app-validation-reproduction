@@ -11,6 +11,7 @@ use common::{create_post, sample_post_1};
 
 #[tokio::test(flavor = "multi_thread")]
 async fn create_a_post_and_get_all_posts() {
+    holochain_trace::test_run().unwrap();
     // Use prebuilt dna file
     let dna_path = std::env::current_dir()
         .unwrap()
