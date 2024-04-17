@@ -1,0 +1,28 @@
+---
+manifest_version: "1"
+name: posts_test
+integrity:
+  network_seed: ~
+  properties: ~
+  origin_time: 1676140846503210
+  zomes:
+    - name: posts_integrity
+      hash: ~
+      bundled: "../target/wasm32-unknown-unknown/release/posts_integrity.wasm"
+      dependencies: ~    
+    - name: profiles_integrity
+      hash: ~
+      bundled: <NIX PACKAGE>
+      dependencies: ~
+coordinator:
+  zomes:
+    - name: posts
+      hash: ~
+      bundled: "../target/wasm32-unknown-unknown/release/posts.wasm"
+      dependencies:
+        - name: posts_integrity    
+    - name: profiles
+      hash: ~
+      bundled: <NIX PACKAGE>
+      dependencies:
+        - name: profiles_integrity

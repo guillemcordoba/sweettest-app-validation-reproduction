@@ -1,0 +1,21 @@
+{
+  "name": "posts-dev",
+  "private": true,
+  "scripts": {
+    "start": "AGENTS=2 pnpm network",
+    "network": "hc s clean && pnpm build:happ && BOOTSTRAP_PORT=$(port) SIGNAL_PORT=$(port) UI_PORT=8888 concurrently -k \"pnpm -F @holochain-open-dev/posts start\" \"pnpm launch\" \"holochain-playground\" \"pnpm local-services\"",
+    "launch": "echo pass | RUST_LOG=warn hc launch --piped -n $AGENTS workdir/posts-debug.happ --ui-port $UI_PORT network --bootstrap-port http://127.0.0.1:$BOOTSTRAP_PORT webrtc ws://127.0.0.1:$SIGNAL_PORT",
+    "local-services": "hc run-local-services --bootstrap-port $BOOTSTRAP_PORT --signal-port $SIGNAL_PORT",
+    "test": "pnpm build:happ && nix flake check -L && pnpm -F tests test",
+    "build:happ": "nix build -L .#posts_test_app.meta.debug -o workdir/posts_test-debug.happ"
+  },
+  "devDependencies": {
+    "@holochain-playground/cli": "^0.1.1",
+    "concurrently": "^6.2.1",
+    "gh-pages": "^3.2.3"
+  },
+  "type": "module",
+  "engines": {
+    "pnpm": ">=9.0.0"
+  }
+}
