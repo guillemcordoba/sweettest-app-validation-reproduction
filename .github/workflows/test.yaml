@@ -28,5 +28,5 @@ jobs:
 
       - name: Install and test
         run: |
-          nix develop --command bash -c "npm i && npm t && npm run build -w posts-lib"
+          nix develop --command bash -c "nix build .#posts_test_dna -o workdir/posts_test.dna && RUST_LOG=holochain::core::workflow=info DNA_PATH=../../../workdir/posts_test.dna cargo test --profile release"
 
