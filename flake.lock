@@ -920,11 +920,11 @@
         "versions": "versions"
       },
       "locked": {
-        "lastModified": 1713950675,
-        "narHash": "sha256-COFOUFuF3/jrfeA4ox9wSGNX/53WI7uupHYIHQO4LCc=",
+        "lastModified": 1713951347,
+        "narHash": "sha256-n5tsuDjYVmhHHZj7lFfO+VFaEFuFQyTZ61wKFDrlYrU=",
         "owner": "holochain-open-dev",
         "repo": "infrastructure",
-        "rev": "e04d1eb992332ddcafcc209c91a0022de7a444f8",
+        "rev": "271063479630fadc30942468b0cc1451562c2ad1",
         "type": "github"
       },
       "original": {
@@ -2587,16 +2587,17 @@
       },
       "locked": {
         "dir": "versions/weekly",
-        "lastModified": 1713509737,
-        "narHash": "sha256-w3gU0t5ELF6F2Sw/ZMgGRWTpxy/g0ZXnUZK1bZfqrgs=",
+        "lastModified": 1713315590,
+        "narHash": "sha256-hWeNAq+F1rAoYulPFqpQOo0cjeMZVvKXLohnP0MOc9Y=",
         "owner": "holochain",
         "repo": "holochain",
-        "rev": "d08d66a1293ea4bb2185f49f5af55be1fb4fbda1",
+        "rev": "d8715775f359211b7031f4bdca1cc89db679ed10",
         "type": "github"
       },
       "original": {
         "dir": "versions/weekly",
         "owner": "holochain",
+        "ref": "holochain-0.3.0-beta-dev.46",
         "repo": "holochain",
         "type": "github"
       }
