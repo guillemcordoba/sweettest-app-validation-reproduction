@@ -40,7 +40,7 @@ async fn create_certificate_test() {
 
 #[tokio::test(flavor = "multi_thread")]
 async fn create_and_read_certificate() {
-    holochain_trace::test_run().unwrap();
+    holochain_trace::test_run();
 
     // Use prebuilt dna file
     let dna_path = std::env::current_dir().unwrap().join(
